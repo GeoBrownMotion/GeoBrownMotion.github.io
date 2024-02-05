@@ -1,4 +1,11 @@
 # GeoBrownMotion.github.io
+
+A link to your website: https://geobrownmotion.github.io/
+
+A link to your Github repo (if this is private, make sure that TA’s are added as collaborators): https://github.com/GeoBrownMotion/GeoBrownMotion.github.io.git
+
+A writeup responding to the following questions and ideas(at least 3 sentences per bullet point):
+
 1. What was the most challenging piece of this assignment?  Did you find it easy or challenging to work with HTML and CSS?  How long did this overall assignment take you?
 - Answer: 
 
