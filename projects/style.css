@@ -1,0 +1,30 @@
+#project-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.project {
+    background-color: #f8f9fa;
+    border: 1px solid #e7e7e7;
+    margin: 10px;
+    padding: 20px;
+}
+
+.project h3 {
+    margin: 0;
+}
+
+.project p {
+    margin: 10px 0;
+}
+
+.project a {
+    text-decoration: none;
+    color: #0275d8;
+    transition: color 0.3s ease;
+}
+
+.project a:hover {
+    color: #0056b3;
+}

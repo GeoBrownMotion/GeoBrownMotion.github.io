@@ -1,0 +1,23 @@
+#contact-info {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contact-item {
+    margin: 10px 0;
+}
+
+.contact-item span {
+    font-weight: bold;
+}
+
+.contact-item a {
+    text-decoration: none;
+    color: #0275d8;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #0056b3;
+}

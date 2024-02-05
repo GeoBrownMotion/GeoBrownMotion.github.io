@@ -1,0 +1,40 @@
+#activities {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.activities-entry {
+    margin: 10px 0;
+}
+
+.activities-entry h4 {
+    margin: 0;
+}
+
+#images {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+#hobbies {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+}
