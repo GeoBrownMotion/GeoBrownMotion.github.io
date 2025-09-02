@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Name</title>
+    
+    <!-- 使用系统字体栈，类似Squarespace的字体选择 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Rebecca网站的精确颜色 */
+            --gold: #D4A574;  /* 标题金色 */
+            --link-blue: #0066CC;  /* 链接蓝色 */
+            --text-black: #000000;
+            --text-gray: #666666;
+            --bg-white: #FFFFFF;
+            --border-light: #E5E5E5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-black);
+            background: var(--bg-white);
+            min-height: 100vh;
+        }
+
+        /* Header样式 - 基于Squarespace的header-layout-branding-center */
+        .header {
+            padding: 2vw 3vw;
+            position: relative;
+            background: var(--bg-white);
+        }
+
+        .header-inner {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* 导航栏左侧 */
+        .header-nav {
+            flex: 1;
+            display: flex;
+            gap: 30px;
+        }
+
+        .header-nav a {
+            color: var(--link-blue);
+            text-decoration: none;
+            font-size: 16px;
+            transition: opacity 0.3s;
+        }
+
+        .header-nav a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        /* 中间标题 */
+        .header-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 28px;
+            font-weight: 400;
+        }
+
+        .header-title a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        /* 右侧社交图标 */
+        .header-social {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        .header-social a {
+            color: var(--link-blue);
+            text-decoration: none;
+            font-size: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .header-social a:hover {
+            opacity: 0.7;
+        }
+
+        /* 主要内容区域 */
+        .main-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 3vw;
+            min-height: calc(100vh - 300px);
+        }
+
+        .content-wrapper {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 左侧图片 */
+        .image-section {
+            flex: 0 0 400px;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: auto;
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+        }
+
+        .profile-image:hover {
+            filter: grayscale(0%);
+        }
+
+        /* 右侧文本内容 */
+        .text-section {
+            flex: 1;
+            padding-top: 20px;
+        }
+
+        .greeting {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 0;
+            line-height: 1.2;
+        }
+
+        .greeting-subtitle {
+            font-size: 20px;
+            color: var(--text-gray);
+            font-weight: 300;
+            margin-left: 10px;
+        }
+
+        .intro {
+            margin: 30px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .intro a {
+            color: var(--link-blue);
+            text-decoration: underline;
+        }
+
+        .intro a:hover {
+            opacity: 0.7;
+        }
+
+        .current-status {
+            margin-top: 40px;
+        }
+
+        .current-status h3 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .status-list {
+            list-style: none;
+            padding-left: 40px;
+        }
+
+        .status-list li {
+            margin-bottom: 12px;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .status-list li:before {
+            content: "•";
+            position: absolute;
+            left: -20px;
+            color: var(--text-black);
+        }
+
+        .status-list a {
+            color: var(--link-blue);
+            text-decoration: underline;
+        }
+
+        .status-list a:hover {
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-light);
+            padding: 40px 3vw;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            font-size: 16px;
+            color: var(--text-gray);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            color: var(--link-blue);
+            font-size: 20px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-social a:hover {
+            opacity: 0.7;
+        }
+
+        .footer-email {
+            font-size: 16px;
+            color: var(--text-black);
+        }
+
+        /* 移动端响应式设计 */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .header-title {
+                position: static;
+                transform: none;
+                margin: 20px 0;
+            }
+
+            .header-nav, .header-social {
+                justify-content: center;
+            }
+
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .image-section {
+                flex: 1;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .greeting {
+                font-size: 36px;
+                text-align: center;
+            }
+
+            .text-section {
+                text-align: center;
+            }
+
+            .status-list {
+                padding-left: 20px;
+                text-align: left;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        /* 添加一些微妙的动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .text-section > * {
+            animation: fadeIn 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .text-section > *:nth-child(1) { animation-delay: 0.1s; }
+        .text-section > *:nth-child(2) { animation-delay: 0.2s; }
+        .text-section > *:nth-child(3) { animation-delay: 0.3s; }
+        .text-section > *:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <nav class="header-nav">
+                <a href="#computer-science">Computer Science</a>
+                <a href="#music">Music</a>
+                <a href="#contact">Contact</a>
+                <a href="cv.pdf" target="_blank">C.V.</a>
+            </nav>
+            
+            <div class="header-title">
+                <a href="/">Your Name</a>
+            </div>
+            
+            <div class="header-social">
+                <a href="mailto:your.email@university.edu" title="Email">✉️</a>
+                <a href="https://github.com/yourusername" title="GitHub" target="_blank">🔗</a>
+                <a href="https://linkedin.com/in/yourusername" title="LinkedIn" target="_blank">💼</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            <!-- 左侧照片 -->
+            <div class="image-section">
+                <img src="https://via.placeholder.com/400x500/f0f0f0/666666?text=Your+Photo" 
+                     alt="Profile photo" 
+                     class="profile-image">
+            </div>
+
+            <!-- 右侧文本 -->
+            <div class="text-section">
+                <h1 class="greeting">
+                    hi!
+                    <span class="greeting-subtitle">(my name is [Your Name])</span>
+                </h1>
+
+                <p class="intro">
+                    I'm a <a href="#computer-science">computer scientist</a> & 
+                    <a href="#music">[your second identity]</a> 
+                    (click on either one to learn more)
+                </p>
+
+                <div class="current-status">
+                    <h3>Where I am right now:</h3>
+                    <ul class="status-list">
+                        <li>PhD Student at [University Name] under Prof. [Advisor Name]</li>
+                        <li>Organizing a [research topic] reading group: <a href="#" target="_blank">[GROUP NAME]</a></li>
+                        <li>Working on [current research project]</li>
+                        <li>Teaching Assistant for [Course Name]</li>
+                    </ul>
+                </div>
+
+                <!-- 可以添加更多部分 -->
+                <div class="current-status" style="margin-top: 40px;">
+                    <h3>Recent Updates:</h3>
+                    <ul class="status-list">
+                        <li>[Month Year]: Paper accepted to [Conference Name]</li>
+                        <li>[Month Year]: Presented at [Event Name]</li>
+                        <li>[Month Year]: Started internship at [Company/Lab Name]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                Thanks for Visiting :)
+            </div>
+            
+            <div class="footer-social">
+                <a href="mailto:your.email@university.edu" title="Email">✉️</a>
+                <a href="https://github.com/yourusername" title="GitHub" target="_blank">🔗</a>
+                <a href="https://linkedin.com/in/yourusername" title="LinkedIn" target="_blank">💼</a>
+            </div>
+            
+            <div class="footer-email">
+                your.email@university.edu
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 添加平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 可选：添加打字效果
+        const subtitles = ['Your Name', 'Your Nickname', 'a researcher'];
+        let subtitleIndex = 0;
+        const subtitleElement = document.querySelector('.greeting-subtitle');
+        
+        if (subtitleElement) {
+            setInterval(() => {
+                subtitleIndex = (subtitleIndex + 1) % subtitles.length;
+                subtitleElement.style.opacity = '0';
+                setTimeout(() => {
+                    subtitleElement.textContent = `(my name is ${subtitles[subtitleIndex]})`;
+                    subtitleElement.style.opacity = '1';
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
