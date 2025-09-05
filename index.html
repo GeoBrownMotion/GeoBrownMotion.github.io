@@ -177,7 +177,7 @@
 
         .greeting {
             font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: clamp(22px, 3vw, 40px);
+            font-size: clamp(22px, 3vw, 30px);
             font-weight: 300;
             line-height: 1;
             margin-bottom: 0;
@@ -189,7 +189,15 @@
             font-weight: 300;
             margin-left: 10px;
         }
+        .greeting-motto {
+            display: block; 
+            font-size: 18px; 
+            color: #999; 
+            font-weight: 300;
+            margin-top: 10px;
 
+            letter-spacing: 0.5px;
+        }
         .intro {
             margin: 30px 0;
             font-size: clamp(18px, 1.5vw, 22px);
@@ -379,6 +387,9 @@
             color: #FF0000;
         }
         @media (max-width: 768px) {
+            .greeting-motto {
+        font-size: 12px;
+    }
             .header-inner {
                 flex-direction: column;
                 gap: 20px;
@@ -569,6 +580,7 @@
                 <h1 class="greeting">
                     hi!🤞
                     <span class="greeting-subtitle">I am Brandy!!</span>
+                    <span class="greeting-motto">rule number 1 true to myself</span>
                 </h1>
                 
                 <p class="intro">
@@ -636,16 +648,25 @@
             });
         });
 
-        const subtitles = ['Machine Learning (Optimal Transport)!!', 'Efficient System!!', 'Generative AI!!'];
+        const subtitles = [
+            'Machine Learning (Optimal Transport)!!', 
+            'Efficient System!!', 
+            'Generative AI!!',
+            'my mom!!'
+        ];
         let subtitleIndex = 0;
         const subtitleElement = document.querySelector('.greeting-subtitle');
-        
+
         if (subtitleElement) {
             setInterval(() => {
                 subtitleIndex = (subtitleIndex + 1) % subtitles.length;
                 subtitleElement.style.opacity = '0';
                 setTimeout(() => {
-                    subtitleElement.textContent = `I 🤍 ${subtitles[subtitleIndex]}`;
+                    if (subtitles[subtitleIndex] === 'mom') {
+                        subtitleElement.textContent = `I 😽 ${subtitles[subtitleIndex]}`;
+                    } else {
+                        subtitleElement.textContent = `I 🤍 ${subtitles[subtitleIndex]}`;
+                    }
                     subtitleElement.style.opacity = '1';
                 }, 300);
             }, 3000);
