@@ -1,0 +1,23 @@
+# ---------- Site Basics ----------
+title: "Ping He (Brandy)"
+description: "Computer Science PhD student at Vanderbilt University."
+url: "https://geobrownmotion.github.io"  
+baseurl: ""                               
+
+# ---------- Build ----------
+markdown: kramdown
+theme: null   
+plugins:
+  - jekyll-sitemap 
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - vendor/
+  - scripts/
+  - .github/
+  - .vscode/
