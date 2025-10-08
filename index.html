@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <base href="./">
+  
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1">
@@ -429,39 +431,36 @@
   }
 </script>
 <script>
-  // --- Computer Science notes directory data ---
+  // 读取 <base> 作为所有相对链接前缀（若无则默认根 /）
+  const BASE = document.querySelector('base')?.getAttribute('href') || './';
+
   const csNotes = [
     {
       title: 'Flash Attention',
-      date: '2026-10-07', // ISO 格式，便于排序和 <time datetime=...>
-      href: 'notes/2026-10-07-Flash-Attention.pdf',
+      date: '2026-10-07',
+      href: `${BASE}notes/2026-10-07-Flash-Attention.pdf`,
       tags: ['Attention','Efficiency','GPU']
-    },
-    // 以后新增一篇，只要在这里再 push 一个对象
-    // { title:'...', date:'YYYY-MM-DD', href:'notes/xxx.pdf', tags:['...'] }
+    }
   ];
 
-  function formatDate(iso) {
+  function formatDate(iso){
     const d = new Date(iso);
-    // 英文显示：Oct 7, 2026
     return d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
   }
 
-  function renderCSNotes() {
+  function renderCSNotes(){
     const ul = document.getElementById('cs-notes');
-    if (!ul) return;
-    csNotes.sort((a, b) => b.date.localeCompare(a.date));
+    if(!ul) return;
+    csNotes.sort((a,b)=> b.date.localeCompare(a.date));
     ul.innerHTML = csNotes.map(n => `
       <li>
         <time datetime="${n.date}">${formatDate(n.date)}</time>
         <a href="${n.href}" target="_blank" rel="noopener">${n.title} (PDF)</a>
-        ${Array.isArray(n.tags) && n.tags.length
-          ? `<span class="note-badges">${n.tags.map(t=>`<span class="badge">${t}</span>`).join('')}</span>`
-          : ''}
+        ${Array.isArray(n.tags)&&n.tags.length ? 
+          `<span class="note-badges">${n.tags.map(t=>`<span class="badge">${t}</span>`).join('')}</span>` : ``}
       </li>
     `).join('');
   }
-
   renderCSNotes();
 </script>
 </body>
