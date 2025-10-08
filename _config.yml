@@ -2,7 +2,7 @@
 title: "Ping He (Brandy)"
 description: "Computer Science PhD student at Vanderbilt University."
 url: "https://geobrownmotion.github.io"  
-baseurl: ""                               
+baseurl: ""      
 
 # ---------- Build ----------
 markdown: kramdown
