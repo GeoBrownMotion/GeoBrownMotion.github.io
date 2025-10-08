@@ -113,7 +113,40 @@
     }
     .fa-github{ color:#333; }
     .fa-twitter{ color:#1DA1F2; }
+/* ---------- Sections / Notes directory ---------- */
+.section {
+  display: none;                /* 默认隐藏，点击锚点后显示 */
+  padding: 4vw 3vw;
+  background: rgba(255,255,255,.6);
+  border-top: 1px solid var(--border-light);
+}
+.section:target {               /* 点击 #computer-science 时显示 */
+  display: block;
+}
+.section .section-inner {
+  max-width: 1200px; margin: 0 auto;
+}
 
+.section h2 {
+  font-weight: 400; margin-bottom: 16px;
+}
+
+.note-list { list-style: none; margin-top: 12px; padding: 0; }
+.note-list li {
+  display: flex; gap: 16px; align-items: baseline;
+  padding: 10px 0; border-bottom: 1px dashed var(--border-light);
+}
+.note-list time {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px; color:#666; min-width: 140px;
+}
+.note-badges { display:flex; gap:8px; margin-left:auto; }
+.badge { border:1px solid var(--border-light); border-radius:999px; padding:2px 8px; font-size:12px; color:#666; }
+
+@media (max-width: 768px){
+  .note-list li { flex-wrap: wrap; }
+  .note-badges { width: 100%; margin-left: 0; }
+}
     /* ---------- Main ---------- */
     .main-container{ width:100%; margin:0; padding:0; }
     .content-card{
@@ -301,10 +334,41 @@
       </div>
     </div>
 
-    <!-- 占位锚点（有内容后可替换/删除） -->
-    <section id="computer-science" hidden></section>
-    <section id="statistics" hidden></section>
-    <section id="chill-memo" hidden></section>
+<section id="computer-science" class="section">
+  <div class="section-inner">
+    <h2>Computer Science — Notes</h2>
+    <ul class="note-list" id="cs-notes">
+      <!-- JS 会把笔记渲染到这里；你也可以用纯静态 <li> -->
+      <noscript>
+        <li>
+          <time datetime="2026-10-07">Oct 7, 2026</time>
+          <a href="notes/2026-10-07-Flash-Attention.pdf" target="_blank" rel="noopener">
+            Flash Attention (PDF)
+          </a>
+          <span class="note-badges">
+            <span class="badge">Attention</span>
+            <span class="badge">Efficiency</span>
+            <span class="badge">GPU</span>
+          </span>
+        </li>
+      </noscript>
+    </ul>
+  </div>
+</section>
+
+<section id="statistics" class="section">
+  <div class="section-inner">
+    <h2>Statistics — Notes</h2>
+    <p>Coming soon.</p>
+  </div>
+</section>
+
+<section id="chill-memo" class="section">
+  <div class="section-inner">
+    <h2>Chill Memo</h2>
+    <p>Coming soon.</p>
+  </div>
+</section>
   </main>
 
   <!-- Footer -->
@@ -363,6 +427,42 @@
       }, 300);
     }, 3000);
   }
+</script>
+<script>
+  // --- Computer Science notes directory data ---
+  const csNotes = [
+    {
+      title: 'Flash Attention',
+      date: '2026-10-07', // ISO 格式，便于排序和 <time datetime=...>
+      href: 'notes/2026-10-07-Flash-Attention.pdf',
+      tags: ['Attention','Efficiency','GPU']
+    },
+    // 以后新增一篇，只要在这里再 push 一个对象
+    // { title:'...', date:'YYYY-MM-DD', href:'notes/xxx.pdf', tags:['...'] }
+  ];
+
+  function formatDate(iso) {
+    const d = new Date(iso);
+    // 英文显示：Oct 7, 2026
+    return d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+  }
+
+  function renderCSNotes() {
+    const ul = document.getElementById('cs-notes');
+    if (!ul) return;
+    csNotes.sort((a, b) => b.date.localeCompare(a.date));
+    ul.innerHTML = csNotes.map(n => `
+      <li>
+        <time datetime="${n.date}">${formatDate(n.date)}</time>
+        <a href="${n.href}" target="_blank" rel="noopener">${n.title} (PDF)</a>
+        ${Array.isArray(n.tags) && n.tags.length
+          ? `<span class="note-badges">${n.tags.map(t=>`<span class="badge">${t}</span>`).join('')}</span>`
+          : ''}
+      </li>
+    `).join('');
+  }
+
+  renderCSNotes();
 </script>
 </body>
 </html>
