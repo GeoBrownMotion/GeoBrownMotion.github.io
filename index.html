@@ -163,7 +163,12 @@
       object-fit:cover; object-position:center; transition:transform .3s ease, filter .3s ease;
     }
     .profile-image:hover{ transform:scale(1.05); filter:grayscale(30%); }
-
+    .intro-note{
+      display:block;          /* 换行 */
+      font-size:0.85em;       /* 字体更小 */
+      color:#666;             /* 低调一点的灰色，可按需调整 */
+      margin-top:4px;
+    }
     .image-caption{
       position:absolute; bottom:10px; right:10px; color:#fff; font-size:11px;
       font-family:'Space Mono',monospace; font-weight:300;
@@ -232,6 +237,13 @@
       .intro, .current-status{ text-align:left; max-width:100%; }
       .status-list{ padding-left:20px; }
       .footer-content{ flex-direction:column; gap:20px; text-align:center; }
+      /* Put mottos/intro just above the image with tight spacing */
+      .image-preamble{
+        margin-bottom: 8px;   /* 紧挨着图片 */
+      }
+      .image-preamble .intro{
+        margin: 6px 0 0;      /* 比默认的 24px 更紧凑 */
+      }
     }
   </style>
 </head>
@@ -274,6 +286,15 @@
   <main class="main-container">
     <div class="content-card">
       <div class="image-section">
+      <div class="image-preamble">
+        <span class="greeting-motto">rule number 1 true to myself</span>
+        <span class="greeting-motto">to recognize a passion, and to live it, without compromise</span>
+        <p class="intro">
+          I'm a <a href="#computer-science">computer science</a> &
+          <a href="#statistics">statistics</a> scientist
+          <span class="intro-note">(CLICK and See Notes)</span>
+        </p>
+      </div>
         <div class="image-wrapper">
           <img
             src="images/DSCF2546.jpeg"
@@ -291,17 +312,16 @@
       <div class="text-section">
         <h1 class="greeting">hi!!🤞 I'm Ping He <span class="nickname">(Brandy)</span></h1>
         <p class="greeting-subtitle">Computer Science PhD Student @ Vanderbilt University</p>
-
-        <span class="greeting-motto">rule number 1 true to myself</span>
-        <span class="greeting-motto">to recognize a passion, and to live it, without compromise</span>
-        
-        <p class="topic-rotate-line">
-        <span class="topic-rotate">&nbsp;</span>
+      <!-- Research Blurb (Academic summary) -->
+      <div class="research-blurb" aria-label="Research summary">
+        <p>I study how to <strong>compute more</strong> with <strong>fewer resources</strong>:</p>
+        <p>
+          My research makes ML efficient by <strong>co-designing algorithms</strong> and <strong>systems</strong>.
+          I bridge theory and practice—from novel sampling strategies to parallel serving system—to make generative models scalable and accessible.
         </p>
-        <p class="intro">
-        I'm a <a href="#computer-science">computer science</a> &
-        <a href="#statistics">statistics</a> scientist
-        </p>
+        <p class="research-focus">Research Interest:</p>
+        <p class="research-focus">• Generative Modeling • Efficient Generative AI System</p>
+      </div>
 
         <div class="current-status">
           <h3>Where I am right now:</h3>
@@ -361,7 +381,7 @@
 <section id="statistics" class="section">
   <div class="section-inner">
     <h2>Statistics — Notes</h2>
-    <p>Coming soon.</p>
+    <ul class="note-list" id="stats-notes"></ul>
   </div>
 </section>
 
@@ -468,6 +488,35 @@
     `).join('');
   }
   renderCSNotes();
+  const statsNotes = [
+    {
+      title: 'Hilbert Spaces',
+      date: '2025-10-13',  // 如需改日期，可自行调整
+      href: `${BASE}notes/HilbertSpaces.pdf`,
+      tags: ['Functional Analysis','Hilbert Space']
+    },
+    {
+      title: 'Meta-Learning',
+      date: '2025-10-13',  // 如需改日期，可自行调整
+      href: `${BASE}notes/Meta-Learning.pdf`,
+      tags: ['Meta-Learning','MAML','Reptile']
+    }
+  ];
+
+  function renderStatsNotes(){
+    const ul = document.getElementById('stats-notes');
+    if(!ul) return;
+    statsNotes.sort((a,b)=> b.date.localeCompare(a.date));
+    ul.innerHTML = statsNotes.map(n => `
+      <li>
+        <time datetime="${n.date}">${formatDate(n.date)}</time>
+        <a href="${n.href}" target="_blank" rel="noopener">${n.title} (PDF)</a>
+        ${Array.isArray(n.tags)&&n.tags.length ?
+          `<span class="note-badges">${n.tags.map(t=>`<span class="badge">${t}</span>`).join('')}</span>` : ``}
+      </li>
+    `).join('');
+  }
+  renderStatsNotes();
 </script>
 </body>
 </html>
